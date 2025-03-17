@@ -33,11 +33,10 @@ class UserSessionChanged implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
+    public function broadcastOn()
     {
-        return [
-            # Por el momento canales de transmisión públicos
-            new Channel('channel-name'),
-        ];
+        \Log::debug("{$this->message}");
+        \Log::debug("{$this->type}");
+        return  new Channel('notifications');
     }
 }
