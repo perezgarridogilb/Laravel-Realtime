@@ -19,6 +19,8 @@
 @endsection
 
 @push('scripts')
+
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 window.axios.get('/api/users')
@@ -38,5 +40,32 @@ window.axios.get('/api/users')
     })
     .catch((error) => console.error(error));
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+            Echo.channel('users')
+                .listen('UserCreated', (e) => {
+                    const usersElement = document.getElementById('users');
+
+                    let element = document.createElement('li');
+                    element.setAttribute('id', e.user.id);
+                    element.innerText = e.user.name;
+
+                    usersElement.appendChild(element);
+                })
+                .listen('UserUpdated', (e) => {
+                    let element = document.getElementById(e.user.id);
+                    if (element) {
+                        element.innerText = e.user.name;
+                    }
+                })
+                .listen('UserDeleted', (e) => {
+                    let element = document.getElementById(e.user.id);
+                    if (element) {
+                        element.parentNode.removeChild(element);
+                    }
+                });
+    });
+</script>
+
 @endpush
 

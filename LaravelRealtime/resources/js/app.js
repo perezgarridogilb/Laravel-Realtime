@@ -12,3 +12,7 @@ Echo.private('notifications')
 
         notificactionElement.classList.add('alert-' + e.type);
     });
+
+  
+    
+
