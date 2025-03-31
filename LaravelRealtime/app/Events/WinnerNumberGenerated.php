@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class WinnerNumberGenerated
+class WinnerNumberGenerated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -31,6 +31,7 @@ class WinnerNumberGenerated
      */
     public function broadcastOn()
     {
+        \Log::debug($this->number);
         return new Channel('game');
     }
 }
