@@ -38,5 +38,37 @@ Echo.channel('game')
     })
     .listen('WinnerNumberGenerated', (e) => {
     })
-   
 
+    // tercer desarrollo
+    const usersElement = document.getElementById('users');
+    
+    Echo.join('chat')
+        // cuando está
+        .here((users) => {
+            users.forEach((user, index) => {
+            let element = document.createElement('li');
+
+            element.setAttribute('id', user.id);
+            element.innerText = user.name;
+
+            usersElement.appendChild(element);
+        });
+        })
+
+        // cuando se une
+        .joining((users) => {
+            let element = document.createElement('li');
+
+            element.setAttribute('id', user.id);
+            element.innerText = user.name;
+
+            usersElement.appendChild(element);
+        })
+
+        // cuando se va
+        .leaving((users) => {
+            let element = document.getElementById(user.id);
+                    if (element) {
+                        element.parentNode.removeChild(element);
+                    }
+        })

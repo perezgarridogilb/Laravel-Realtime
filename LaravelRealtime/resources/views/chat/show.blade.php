@@ -38,9 +38,8 @@
                         </div>
                         <div class="col-2">
                             <p><strong>Online Now</strong></p>
-                            <ul id="users" class="list-unstyled overflow-auto text-info" style="height: 45vh;"></ul>
-                            <li>Test</li>
-                            <li class="">Test</li>
+                            <ul id="users" class="list-unstyled overflow-auto text-info" style="height: 45vh;">
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -53,8 +52,6 @@
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/7.0.3/pusher.min.js"></script> <!-- Pusher debe cargarse primero -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.11.0/echo.iife.js"></script> <!-- Luego carga Echo -->
-
-
 
 <script>
 
