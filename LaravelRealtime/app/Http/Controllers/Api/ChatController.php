@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\MessageSent;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class ChatController extends Controller
      */
     public function __construct()
     {
+        /** middleware que se asegura de que el usuario haya iniciado sesión */
         $this->middleware('auth');
     }
 
@@ -27,9 +29,17 @@ class ChatController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function messageReceived(Request $request)
     {
-        //
+        $rules = [
+            'message' => 'required',
+        ];
+
+        $request->validate($rules);
+
+        broadcast(new MessageSent($request->user(), $request->message));
+
+        return response()->json(['message'=> 'Message broadcast']);
     }
 
     /**
