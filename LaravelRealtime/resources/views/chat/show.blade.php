@@ -19,8 +19,6 @@
                             <div class="row">
                                 <div class="col-12 border rounded-lg p-3">
                                     <ul id="messages" class="list-unstyled overflow-auto" style="height: 45vh;">
-                                        <li>Test1: Hello</li>
-                                        <li>Test1: Hello</li>
                                     </ul>
                                 </div>
                             </div>

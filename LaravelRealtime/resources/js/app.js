@@ -41,6 +41,7 @@ Echo.channel('game')
 
     // tercer desarrollo
     const usersElement = document.getElementById('users');
+    const messagesElement = document.getElementById('messages');
     
     Echo.join('chat')
         // cuando está
@@ -72,3 +73,26 @@ Echo.channel('game')
                         element.parentNode.removeChild(element);
                     }
         })
+        .listen('MessageSent', (e) => {
+            let element = document.createElement('li');
+
+            element.setAttribute('id', e.user.id);
+            element.innerText = e.user.name + ': ' + e.message;
+
+            messagesElement.appendChild(element);
+        });
+
+        const sendElement = document.getElementById('send');
+        const messageElement = document.getElementById('message');
+    
+    
+        sendElement.addEventListener('click', (e) => {
+            /* evitar que la página se cargue de nuevo */
+            e.preventDefault();
+    
+            window.axios.post('/chat/message', {
+                message: messageElement.value
+            })
+            /** elemento hijo */
+            document.querySelector("#message").value = "";
+        });
