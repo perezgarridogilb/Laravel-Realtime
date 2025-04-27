@@ -2,7 +2,9 @@
 
 @push('styles')
 <style type="text/css">
-
+    #users > li {
+        cursor: pointer;
+    }
 </style>
 @endpush
 
@@ -53,5 +55,9 @@
 
 <script>
 
+function greetUser(id) 
+        {
+            window.axios.post('/chat/greet/' + id);    
+        }
 </script>
 @endpush

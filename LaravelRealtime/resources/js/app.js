@@ -50,6 +50,8 @@ Echo.channel('game')
             let element = document.createElement('li');
 
             element.setAttribute('id', user.id);
+            // para usuarios determinados
+            element.setAttribute('onclick', 'greetUser("' + user.id +'")');
             element.innerText = user.name;
 
             usersElement.appendChild(element);
@@ -61,6 +63,8 @@ Echo.channel('game')
             let element = document.createElement('li');
 
             element.setAttribute('id', user.id);
+            // para usuarios determinados
+            element.setAttribute('onclick', 'greetUser("' + user.id +'")');
             element.innerText = user.name;
 
             usersElement.appendChild(element);

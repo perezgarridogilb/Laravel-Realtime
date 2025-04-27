@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Events\MessageSent;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
@@ -22,7 +23,6 @@ class ChatController extends Controller
      */
     public function showChat()
     {
-        xdebug_break();
         return view('chat.show');
     }
 
@@ -45,9 +45,9 @@ class ChatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function greetReceived(Request $request, User $user)
     {
-        //
+        return "Greeting {$user->name} from {$request->user()->name}";
     }
 
     /**
