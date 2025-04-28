@@ -44,7 +44,11 @@ class ChatController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Función de saludo
+     *
+     * @param Request $request es el emisor
+     * @param User $user es el destinatario
+     * @return string
      */
     public function greetReceived(Request $request, User $user)
     {

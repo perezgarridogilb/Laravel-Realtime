@@ -35,7 +35,7 @@ class GreetingSent implements ShouldBroadcast
     public function broadcastOn()
     {
         \Log::debug($this->message);
-        return 
-            new PrivateChannel('channel-name');
+        // se encarga de actualizar los canales desde javascript
+        return new PrivateChannel("chat.greet.{$this->user->id}");
     }
 }

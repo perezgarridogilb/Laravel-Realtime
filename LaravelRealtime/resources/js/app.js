@@ -48,7 +48,7 @@ Echo.channel('game')
         .here((users) => {
             users.forEach((user, index) => {
             let element = document.createElement('li');
-
+            // ejemplo <li id="5" onclick="greetUser('5')">Nombre de usuario</li>
             element.setAttribute('id', user.id);
             // para usuarios determinados
             element.setAttribute('onclick', 'greetUser("' + user.id +'")');
@@ -59,7 +59,7 @@ Echo.channel('game')
         })
 
         // cuando se une
-        .joining((users) => {
+        .joining((user) => {
             let element = document.createElement('li');
 
             element.setAttribute('id', user.id);
@@ -71,7 +71,7 @@ Echo.channel('game')
         })
 
         // cuando se va
-        .leaving((users) => {
+        .leaving((user) => {
             let element = document.getElementById(user.id);
                     if (element) {
                         element.parentNode.removeChild(element);
@@ -80,7 +80,6 @@ Echo.channel('game')
         .listen('MessageSent', (e) => {
             let element = document.createElement('li');
 
-            element.setAttribute('id', e.user.id);
             element.innerText = e.user.name + ': ' + e.message;
 
             messagesElement.appendChild(element);
@@ -100,3 +99,15 @@ Echo.channel('game')
             /** elemento hijo */
             document.querySelector("#message").value = "";
         });
+
+        // El user des Laravel userId: {{ auth()->user()->id }}
+        // con true lo suscribe al canal
+        // se usa al inicio (DOMLoad) y se usa al momento de actualizar desde el Back-end, algo en el Front-end
+        Echo.private('chat.greet.' + window.Laravel.userId)
+        .listen('GreetingSent', (e) => {
+        let element = document.createElement('li');
+
+        element.innerText = e.message;
+        element.classList.add('text-success');
+        messagesElement.appendChild(element);
+    });

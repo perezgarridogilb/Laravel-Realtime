@@ -27,6 +27,7 @@ Broadcast::channel('chat', function ($user) {
     }
 });
 
+// se usa al inicio y sólo se encarga de crear los canales
 Broadcast::channel('chat.greet.{receiver}', function ($user, $receiver) {
 
         return (int) $user->id === (int) $receiver;

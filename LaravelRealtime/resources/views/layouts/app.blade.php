@@ -78,7 +78,13 @@
             @yield('content')
         </main>
     </div>
-
+    <script>
+    @if(auth()->check())
+        window.Laravel = {
+            userId: {{ auth()->user()->id }}
+        };
+    @endif
+    </script>
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
     @stack('scripts')
